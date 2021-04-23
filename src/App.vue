@@ -1,28 +1,74 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Card v-bind:product="product" @change-img="changeImg"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Card from "./components/Card";
 
+import img1 from './assets/1.png';
+import img2 from './assets/2.png';
+import img3 from './assets/3.png';
+import img4 from './assets/4.png';
+import mainImg from './assets/product.png';
+
+import payme from './assets/Payme.png'
+import click from './assets/Click.png'
+import humo from './assets/Humo.png'
+
+import delivery from './assets/delivery.png'
+import selfDelivery from './assets/ad-product.png'
 export default {
-  name: 'App',
+  name: "App",
+  data(){
+    return {
+      product:{
+        name: '100% органический 10 лет корень корейского женьшеня красный Panax улучшить иммунную',
+        price: 15000000,
+        oldPrice: 20000000,
+        rate: [1, 1, 1, 0.5, 0],
+        ratesCount: 243, 
+        inStock: 1245,
+        ordered: 1,
+        mainImg: mainImg,
+        payment: {
+          payme: {src: payme, show: true},
+          humo: {src: humo, show : true}, 
+          click: {src: click, show: true},
+         },
+        shipment: {
+          deliver: {src: delivery, text: 'Доставка продавца', show: true},
+          selfDeliver: {src: selfDelivery, text: 'Самовывоз', show: true}
+        },
+        img: [img3, img2, img4, img1, img3, img2, img2, img3, img2, img4, img1, img3, img2, img3, img2, img4, img1, img3, img2,]
+      }
+    }
+  },
   components: {
-    HelloWorld
+    Card
+  },
+  methods:{
+    changeImg(path){
+      this.product.mainImg = path;
+    }
   }
-}
+};
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #E5E5E5;
 }
 </style>
