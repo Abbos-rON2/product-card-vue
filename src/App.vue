@@ -11,7 +11,7 @@ import img1 from './assets/1.png';
 import img2 from './assets/2.png';
 import img3 from './assets/3.png';
 import img4 from './assets/4.png';
-import mainImg from './assets/product.png';
+import img5 from './assets/5.png';
 
 import payme from './assets/Payme.png'
 import click from './assets/Click.png'
@@ -25,13 +25,12 @@ export default {
     return {
       product:{
         name: '100% органический 10 лет корень корейского женьшеня красный Panax улучшить иммунную',
-        price: 15000000,
+        price: 10000000,
         oldPrice: 20000000,
-        rate: [1, 1, 1, 0.5, 0],
+        rate: [1, 1, 1,1, 1],
         ratesCount: 243, 
         inStock: 1245,
         ordered: 1,
-        mainImg: mainImg,
         payment: {
           payme: {src: payme, show: true},
           humo: {src: humo, show : true}, 
@@ -41,7 +40,7 @@ export default {
           deliver: {src: delivery, text: 'Доставка продавца', show: true},
           selfDeliver: {src: selfDelivery, text: 'Самовывоз', show: true}
         },
-        img: [img3, img2, img4, img1, img3, img2, img2, img3, img2, img4, img1, img3, img2, img3, img2, img4, img1, img3, img2,]
+        img: [img1, img2, img3, img4, img5]
       }
     }
   },

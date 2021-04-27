@@ -6,9 +6,9 @@
 
 
 <script>
-import fullStar from "../assets/fullStar.png";
-import halfStar from "../assets/halfStar.png";
-import emptyStar from "../assets/emptyStar.png";
+import fullStar from "../../assets/fullStar.png";
+import halfStar from "../../assets/halfStar.png";
+import emptyStar from "../../assets/emptyStar.png";
   
 export default {
   props:['star'],

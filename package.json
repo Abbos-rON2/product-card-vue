@@ -9,8 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "hooper": "^0.3.4",
     "vue": "^2.6.11",
-    "vue-star-rating": "^1.7.0"
+    "vue-image-zoomer": "^1.2.1",
+    "vue-inner-image-zoom": "^1.0.1",
+    "vue-star-rating": "^1.7.0",
+    "vue-zoom-on-hover": "^1.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
