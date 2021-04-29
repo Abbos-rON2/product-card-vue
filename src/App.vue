@@ -6,9 +6,6 @@
 
 <script>
 import Card from "./components/Card";
-
-import img1 from './assets/1.png';
-import img2 from './assets/2.png';
 import img3 from './assets/3.png';
 import img4 from './assets/4.png';
 import img5 from './assets/5.png';
@@ -40,7 +37,7 @@ export default {
           deliver: {src: delivery, text: 'Доставка продавца', show: true},
           selfDeliver: {src: selfDelivery, text: 'Самовывоз', show: true}
         },
-        img: [img1, img2, img3, img4, img5]
+        img: [ img3, img4, img5]
       }
     }
   },
@@ -66,8 +63,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  max-width: 100vw;
+  min-height: 100vh;
   background: #E5E5E5;
 }
 </style>

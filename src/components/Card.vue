@@ -1,33 +1,19 @@
 <template>
+<div class="card-wrapper">
   <div class='card'>
     <div class="card-gallery">
-        <button class="scroll-top" @click="scrollTop">
-          <img :src="arrow" alt="">
-        </button>
-        <button  class="scroll-bottom" @click="scrollBottom">
-          <img :src="arrow" alt="">
-        </button>
-          <hooper 
-          :itemsToSlide="1"
-          ref="carousel" @slide="updateCarousel"
-          class="gallery-pagination" 
-          :itemsToShow="7" group="group1" 
-          :centerMode="true" 
-          :infiniteScroll="true" 
-          :vertical="true">
+                <hooper group="group1" class="gallery-pagination" ref="carousel" @slide="updateCarousel" :settings="hooperSettings">
               <slide v-for="(item, indx) in product.img" :key="indx" :index="indx">
-                <div :class="indx === activeLinkIndex ? 'gallery-item active' : 'gallery-item'">
+                <div :class="indx === activeLinkIndex ? 'gallery-item active' : 'gallery-item'" @click="carouselButton(indx)">
                   <img :src='item' alt="img">
                 </div>
               </slide>
+                <hooper-navigation slot="hooper-addons"></hooper-navigation>
           </hooper>
-          <hooper class="gallery-main" group="group1">
+          <hooper class="gallery-main" group="group1"  :settings="mainHooperSettings" ref="mainCarousel">
               <slide v-for="(item, indx) in product.img" :key="indx" :index="indx">
                 <div class="gallery-main-item">
-                  <image-zoom :show-message="false"
-                    :regular="item">				
-                  </image-zoom>
-                  <!-- <img :src='item' alt="img"> -->
+                  <image-zoom :show-message="false" :regular="item"></image-zoom>
                 </div>
               </slide>
           </hooper>
@@ -72,6 +58,8 @@
       </div>
     </div>
   </div>
+</div>
+
 </template>
 
 <script>
@@ -82,7 +70,8 @@ import ShipmentItem from './Info/ShipmentItem'
 import check from '../assets/check.png'
 import arrow from '../assets/arrows.png'
 
-import { Hooper, Slide} from 'hooper';
+import { Hooper, Slide,  Navigation as HooperNavigation
+  } from 'hooper';
 import 'hooper/dist/hooper.css';
 
 import '../style.css'
@@ -92,6 +81,7 @@ import imageZoom from 'vue-image-zoomer';
 
 export default {
   components: {
+    HooperNavigation,
     imageZoom,
     Hooper,
     Slide,
@@ -106,6 +96,10 @@ export default {
     }
   },
   methods:{
+    carouselButton(index){
+      this.$refs.carousel.slideTo(index);
+      this.activeLinkIndex = index
+    },
     decrement(){
       if(this.quantity > 1){
       this.quantity--
@@ -137,7 +131,7 @@ export default {
     },
     num(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
+    },
   },
   data(){
     return{
@@ -147,8 +141,42 @@ export default {
       arrow,
       activeLinkIndex: null,
       discountPercent : 100-(this.product.price/(this.product.oldPrice/100)),
-
+      hooperSettings: {
+              itemsToShow: 3,
+              centerMode: true,
+              infiniteScroll: true ,
+              breakpoints: {
+                1240:{
+                  itemsToShow: 7,
+                  vertical: true,
+                },
+                992: {
+                  itemsToShow: 9,
+                  vertical: false,
+                },
+                768:{
+                  itemsToShow: 7,
+                  vertical:false,
+                },
+                576:{
+                  itemsToShow: 5
+                },
+                360:{
+                  itemsToShow: 4
+                }
+              }
+            },
+      mainHooperSettings:{
+        infiniteScroll: true,
+        centerMode: true,
+        itemsToShow:1
+      }
     }
-  }
+  },
+  mounted() {
+    
+    setTimeout(() => this.$refs.mainCarousel.updateWidth().bind(this), 50)
+    
+  },
 };
 </script>
